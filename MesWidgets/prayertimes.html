@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -379,6 +378,8 @@ body {
 
 <script>
 let coordinates = null;
+const SAVED_CITY_KEY = 'niyyah-studio-prayer-city';
+let hasSavedCity = false;
 let prayerData = null;
 let tomorrowFajr = null;
 
@@ -502,6 +503,20 @@ async function useSelectedCity() {
         latitude: place.latitude,
         longitude: place.longitude
     };
+
+    // Remember the chosen city in this browser so it is restored next time.
+    try {
+        localStorage.setItem(SAVED_CITY_KEY, JSON.stringify({
+            name: place.name,
+            admin1: place.admin1 || '',
+            country: place.country || '',
+            latitude: place.latitude,
+            longitude: place.longitude
+        }));
+        hasSavedCity = true;
+    } catch (error) {
+        console.warn('City could not be saved in this browser.', error);
+    }
 
     document.getElementById('locationText').textContent =
         "Selected city: " +
@@ -663,8 +678,29 @@ updateDate();
 setInterval(updateClock, 1000);
 setInterval(updateDate, 60000);
 
-// Reuse location permission automatically when it was already granted.
-if (navigator.permissions) {
+// Restore the last manually selected city when the widget opens again.
+try {
+    const savedCity = JSON.parse(localStorage.getItem(SAVED_CITY_KEY) || 'null');
+    if (savedCity &&
+        Number.isFinite(Number(savedCity.latitude)) &&
+        Number.isFinite(Number(savedCity.longitude))) {
+        coordinates = {
+            latitude: Number(savedCity.latitude),
+            longitude: Number(savedCity.longitude)
+        };
+        hasSavedCity = true;
+        document.getElementById('locationText').textContent =
+            'Selected city: ' +
+            [savedCity.name, savedCity.admin1, savedCity.country]
+                .filter(Boolean).join(', ');
+        loadPrayerTimes();
+    }
+} catch (error) {
+    console.warn('Could not restore saved city.', error);
+}
+
+// Reuse GPS only if no manually selected city was saved.
+if (!hasSavedCity && navigator.permissions) {
     navigator.permissions.query({ name: 'geolocation' })
         .then(permission => {
             if (permission.state === 'granted') getLocation();
