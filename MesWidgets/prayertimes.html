@@ -1,10 +1,10 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Niyyah Studio | Prayer Times</title>
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Chewy&family=Poppins:wght@400;500;600;700&family=Lavishly+Yours&display=swap" rel="stylesheet">
@@ -16,26 +16,13 @@
     --soft-pink: #FDA9D2;
     --cream: #FEDDEE;
 }
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-html {
-    width: 100%;
-}
-
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { width: 100%; min-width: 0; }
 body {
-    width: 100%;
-    min-width: 0;
     background: transparent;
     font-family: 'Poppins', sans-serif;
     color: var(--wine);
-    padding: 0;
 }
-
 .widget {
     width: 100%;
     max-width: 460px;
@@ -46,34 +33,24 @@ body {
     padding: clamp(14px, 4vw, 24px);
     overflow: hidden;
 }
-
-/* HEADER */
-.header {
-    text-align: center;
-    margin-bottom: 22px;
-}
-
+.header { text-align: center; margin-bottom: 22px; }
 .brand {
     font-family: 'Chewy', cursive;
     font-size: clamp(26px, 7vw, 30px);
     color: var(--wine);
 }
-
 .subtitle {
     font-family: 'Lavishly Yours', cursive;
     font-size: clamp(26px, 7vw, 30px);
     color: var(--pink);
     margin-top: -5px;
 }
-
 .date {
     font-size: 10px;
     font-weight: 600;
     letter-spacing: 1.5px;
     margin-top: 8px;
 }
-
-/* NEXT PRAYER */
 .next-prayer {
     background: var(--wine);
     color: white;
@@ -82,27 +59,18 @@ body {
     text-align: center;
     margin-bottom: 18px;
 }
-
-.next-label {
-    font-size: 10px;
-    letter-spacing: 1.5px;
-    opacity: .85;
-}
-
+.next-label { font-size: 10px; letter-spacing: 1.5px; opacity: .85; }
 .next-name {
     font-family: 'Chewy', cursive;
     font-size: clamp(28px, 8vw, 32px);
     margin: 8px 0;
 }
-
 .countdown {
     font-size: clamp(23px, 7vw, 28px);
     font-weight: 600;
     letter-spacing: 1px;
     font-variant-numeric: tabular-nums;
 }
-
-/* PRAYER TIMES */
 .prayers {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -110,7 +78,6 @@ body {
     width: 100%;
     min-width: 0;
 }
-
 .prayer {
     min-width: 0;
     width: 100%;
@@ -121,33 +88,21 @@ body {
     justify-content: space-between;
     align-items: center;
     gap: 6px;
-    transition: background .2s, color .2s;
 }
-
-.prayer:last-child {
-    grid-column: 1 / -1;
-}
-
-.prayer.active {
-    background: var(--wine);
-    color: white;
-}
-
+.prayer:last-child { grid-column: 1 / -1; }
+.prayer.active { background: var(--wine); color: white; }
 .prayer-name {
     min-width: 0;
     font-size: clamp(10px, 3vw, 12px);
     font-weight: 600;
     letter-spacing: .3px;
 }
-
 .prayer-time {
     flex: 0 0 auto;
     font-size: clamp(14px, 4vw, 17px);
     font-weight: 700;
     font-variant-numeric: tabular-nums;
 }
-
-/* LOCATION — below the prayer schedule */
 .location {
     margin-top: 18px;
     padding: 13px 10px;
@@ -157,7 +112,6 @@ body {
     text-align: center;
     font-size: 11px;
 }
-
 .location button {
     max-width: 100%;
     background: var(--wine);
@@ -170,13 +124,11 @@ body {
     font-size: 10px;
     cursor: pointer;
 }
-
 .city-picker {
     display: flex;
     gap: 7px;
     margin-top: 10px;
 }
-
 .city-picker input {
     flex: 1 1 auto;
     min-width: 0;
@@ -189,13 +141,11 @@ body {
     font: 11px 'Poppins', sans-serif;
     outline-color: var(--pink);
 }
-
 .city-picker button {
     flex: 0 0 auto;
     margin: 0;
     padding: 9px 12px;
 }
-
 .location select {
     display: block;
     width: 100%;
@@ -207,24 +157,15 @@ body {
     color: var(--wine);
     font: 11px 'Poppins', sans-serif;
 }
-
 .location select[hidden],
-.location button[hidden] {
-    display: none;
-}
-
+.location button[hidden] { display: none; }
 .location-divider {
     margin: 12px 0 2px;
     font-size: 9px;
     letter-spacing: 2px;
     opacity: .65;
 }
-
-.location button:hover,
-.refresh:hover {
-    opacity: .85;
-}
-
+.location button:hover, .refresh:hover { opacity: .85; }
 .location .approx-button {
     display: block;
     margin: 8px auto 0;
@@ -232,14 +173,12 @@ body {
     color: var(--wine);
     border: 1px solid var(--wine);
 }
-
 .location-note {
     margin-top: 8px;
     font-size: 9px;
     line-height: 1.5;
     opacity: .8;
 }
-
 .status {
     font-size: 10px;
     text-align: center;
@@ -247,7 +186,6 @@ body {
     margin-top: 10px;
     overflow-wrap: anywhere;
 }
-
 .refresh {
     display: block;
     max-width: 100%;
@@ -261,7 +199,6 @@ body {
     font-size: 10px;
     cursor: pointer;
 }
-
 .footer {
     text-align: center;
     margin-top: 20px;
@@ -270,42 +207,19 @@ body {
     line-height: 1.6;
     opacity: .8;
 }
-
-/* Small screens: preserve equal inner spacing on both columns */
 @media (max-width: 360px) {
-    .widget {
-        border-radius: 22px;
-        padding: 13px;
-    }
-
-    .prayers {
-        gap: 8px;
-    }
-
-    .prayer {
-        padding: 12px 10px;
-        border-radius: 13px;
-    }
-
-    .prayer-name {
-        font-size: 10px;
-    }
-
-    .prayer-time {
-        font-size: 14px;
-    }
-
-    .date {
-        font-size: 9px;
-        letter-spacing: 1px;
-    }
+    .widget { border-radius: 22px; padding: 13px; }
+    .prayers { gap: 8px; }
+    .prayer { padding: 12px 10px; border-radius: 13px; }
+    .prayer-name { font-size: 10px; }
+    .prayer-time { font-size: 14px; }
+    .date { font-size: 9px; letter-spacing: 1px; }
 }
 </style>
 </head>
 
 <body>
 <div class="widget">
-
     <header class="header">
         <div class="brand">Niyyah Studio</div>
         <div class="subtitle">A moment for your deen</div>
@@ -324,22 +238,18 @@ body {
             <span class="prayer-name">FAJR</span>
             <span class="prayer-time">--:--</span>
         </div>
-
         <div class="prayer" data-name="Dhuhr">
             <span class="prayer-name">DHUHR</span>
             <span class="prayer-time">--:--</span>
         </div>
-
         <div class="prayer" data-name="Asr">
             <span class="prayer-name">ASR</span>
             <span class="prayer-time">--:--</span>
         </div>
-
         <div class="prayer" data-name="Maghrib">
             <span class="prayer-name">MAGHRIB</span>
             <span class="prayer-time">--:--</span>
         </div>
-
         <div class="prayer" data-name="Isha">
             <span class="prayer-name">ISHA</span>
             <span class="prayer-time">--:--</span>
@@ -348,7 +258,6 @@ body {
 
     <section class="location">
         <div id="locationText">Choose your city or detect your location</div>
-
         <div class="city-picker">
             <input id="cityInput" type="text" placeholder="Enter a city (e.g. Paris)" autocomplete="off">
             <button type="button" onclick="searchCity()">SEARCH CITY</button>
@@ -357,23 +266,16 @@ body {
             <option value="">Select a city</option>
         </select>
         <button type="button" onclick="useSelectedCity()" id="useCityButton" hidden>USE THIS CITY</button>
-
         <div class="location-divider">OR</div>
         <button onclick="getLocation()">USE DEVICE LOCATION</button>
         <button class="approx-button" onclick="getApproximateLocation()">USE APPROXIMATE LOCATION</button>
         <div class="location-note">You can choose a city manually if GPS is unavailable in Notion.</div>
     </section>
 
-    <div class="status" id="status">
-        Allow location access to load prayer times.
-    </div>
+    <div class="status" id="status">Allow location access to load prayer times.</div>
+    <button class="refresh" onclick="refreshPrayerTimes()">↻ Refresh</button>
 
-    <button class="refresh" onclick="getLocation()">↻ Refresh</button>
-
-    <footer class="footer">
-        NIYYAH STUDIO · MAKE TIME FOR WHAT MATTERS
-    </footer>
-
+    <footer class="footer">NIYYAH STUDIO · MAKE TIME FOR WHAT MATTERS</footer>
 </div>
 
 <script>
@@ -404,24 +306,19 @@ function updateDate() {
 
 function getLocation() {
     const status = document.getElementById('status');
-
     if (!navigator.geolocation) {
         status.textContent = "Geolocation is not supported by this browser.";
         return;
     }
-
     status.textContent = "Finding your location...";
-
     navigator.geolocation.getCurrentPosition(
         async position => {
             coordinates = {
                 latitude: position.coords.latitude,
                 longitude: position.coords.longitude
             };
-
             document.getElementById('locationText').textContent =
                 "Prayer times for your device location";
-
             await loadPrayerTimes();
         },
         error => {
@@ -430,10 +327,7 @@ function getLocation() {
                     ? "Notion or your browser blocked GPS. Try approximate location below."
                     : "GPS unavailable here. Try approximate location below.";
         },
-        {
-            enableHighAccuracy: true,
-            timeout: 15000
-        }
+        { enableHighAccuracy: true, timeout: 15000 }
     );
 }
 
@@ -448,7 +342,6 @@ async function searchCity() {
         status.textContent = "Please enter at least 2 characters.";
         return;
     }
-
     status.textContent = "Searching for your city...";
     results.hidden = true;
     useButton.hidden = true;
@@ -457,10 +350,8 @@ async function searchCity() {
         const url = `https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(query)}&count=10&language=en&format=json`;
         const response = await fetch(url);
         if (!response.ok) throw new Error("City search failed.");
-
         const data = await response.json();
         const places = data.results || [];
-
         results.innerHTML = '<option value="">Choose the correct city...</option>';
 
         places.forEach((place, index) => {
@@ -471,14 +362,11 @@ async function searchCity() {
             results.appendChild(option);
         });
 
-        // Keep the results in memory for the selection handler.
         window.niyyahCityResults = places;
-
         if (!places.length) {
             status.textContent = "No city found. Try another spelling.";
             return;
         }
-
         results.hidden = false;
         useButton.hidden = false;
         status.textContent = `${places.length} result(s) found. Select your city.`;
@@ -504,7 +392,6 @@ async function useSelectedCity() {
         longitude: place.longitude
     };
 
-    // Remember the chosen city in this browser so it is restored next time.
     try {
         localStorage.setItem(SAVED_CITY_KEY, JSON.stringify({
             name: place.name,
@@ -529,28 +416,22 @@ async function useSelectedCity() {
 async function getApproximateLocation() {
     const status = document.getElementById('status');
     status.textContent = "Finding approximate location from your internet connection...";
-
     try {
         const response = await fetch("https://ipwho.is/");
         if (!response.ok) throw new Error("Location service unavailable.");
-
         const data = await response.json();
         if (!data.success || typeof data.latitude !== "number" ||
             typeof data.longitude !== "number") {
             throw new Error("Could not detect approximate location.");
         }
-
         coordinates = {
             latitude: data.latitude,
             longitude: data.longitude
         };
-
         const place = [data.city, data.region, data.country]
             .filter(Boolean).join(", ");
-
         document.getElementById('locationText').textContent =
             place ? `Approximate location: ${place}` : "Approximate location detected";
-
         await loadPrayerTimes();
     } catch (error) {
         status.textContent =
@@ -561,23 +442,13 @@ async function getApproximateLocation() {
 
 async function fetchTimings(date) {
     const { latitude, longitude } = coordinates;
-
     const url =
         `https://api.aladhan.com/v1/timings/${formatDate(date)}` +
         `?latitude=${latitude}&longitude=${longitude}&method=12&school=0`;
-
     const response = await fetch(url);
-
-    if (!response.ok) {
-        throw new Error("Unable to retrieve prayer times.");
-    }
-
+    if (!response.ok) throw new Error("Unable to retrieve prayer times.");
     const result = await response.json();
-
-    if (result.code !== 200) {
-        throw new Error("Prayer calculation failed.");
-    }
-
+    if (result.code !== 200) throw new Error("Prayer calculation failed.");
     return result.data.timings;
 }
 
@@ -589,52 +460,45 @@ function cleanTime(time) {
 
 async function loadPrayerTimes() {
     const status = document.getElementById('status');
-
     try {
         status.textContent = "Calculating prayer times...";
-
         prayerData = await fetchTimings(new Date());
-
         const tomorrow = new Date();
         tomorrow.setDate(tomorrow.getDate() + 1);
-
         const tomorrowData = await fetchTimings(tomorrow);
         tomorrowFajr = tomorrowData.Fajr;
 
         prayerNames.forEach(name => {
-            const card = document.querySelector(
-                `.prayer[data-name="${name}"]`
-            );
-
-            card.querySelector('.prayer-time').textContent =
-                cleanTime(prayerData[name]);
-
+            const card = document.querySelector(`.prayer[data-name="${name}"]`);
+            card.querySelector('.prayer-time').textContent = cleanTime(prayerData[name]);
             card.classList.remove('active');
         });
-
         status.textContent = "Prayer times successfully updated ♡";
         updateClock();
-
     } catch (error) {
         status.textContent = "Unable to load prayer times. Please try again.";
         console.error(error);
     }
 }
 
+function refreshPrayerTimes() {
+    if (coordinates) {
+        loadPrayerTimes();
+    } else {
+        getLocation();
+    }
+}
+
 function updateClock() {
     if (!prayerData || !tomorrowFajr) return;
-
     const now = new Date();
     let next = null;
     let nextDate = new Date(now);
 
     for (const name of prayerNames) {
-        const [hour, minute] = cleanTime(prayerData[name])
-            .split(':').map(Number);
-
+        const [hour, minute] = cleanTime(prayerData[name]).split(':').map(Number);
         const prayerDate = new Date(now);
         prayerDate.setHours(hour, minute, 0, 0);
-
         if (prayerDate > now) {
             next = name;
             nextDate = prayerDate;
@@ -644,9 +508,7 @@ function updateClock() {
 
     if (!next) {
         next = "Fajr";
-        const [hour, minute] = cleanTime(tomorrowFajr)
-            .split(':').map(Number);
-
+        const [hour, minute] = cleanTime(tomorrowFajr).split(':').map(Number);
         nextDate.setDate(nextDate.getDate() + 1);
         nextDate.setHours(hour, minute, 0, 0);
     }
@@ -662,15 +524,12 @@ function updateClock() {
     document.getElementById('nextName').textContent = next;
     document.getElementById('nextTime').textContent =
         cleanTime(nextDate.toTimeString().slice(0, 5)) +
-        (nextDate.toDateString() !== now.toDateString()
-            ? " · TOMORROW" : "");
+        (nextDate.toDateString() !== now.toDateString() ? " · TOMORROW" : "");
 
     const seconds = Math.max(0, Math.floor((nextDate - now) / 1000));
-
     const h = String(Math.floor(seconds / 3600)).padStart(2, '0');
     const m = String(Math.floor((seconds % 3600) / 60)).padStart(2, '0');
     const s = String(seconds % 60).padStart(2, '0');
-
     document.getElementById('countdown').textContent = `${h}:${m}:${s}`;
 }
 
@@ -678,7 +537,7 @@ updateDate();
 setInterval(updateClock, 1000);
 setInterval(updateDate, 60000);
 
-// Restore the last manually selected city when the widget opens again.
+// Restore the last manually selected city on each widget opening.
 try {
     const savedCity = JSON.parse(localStorage.getItem(SAVED_CITY_KEY) || 'null');
     if (savedCity &&
@@ -699,7 +558,7 @@ try {
     console.warn('Could not restore saved city.', error);
 }
 
-// Reuse GPS only if no manually selected city was saved.
+// Automatically reuse GPS only if no saved city exists.
 if (!hasSavedCity && navigator.permissions) {
     navigator.permissions.query({ name: 'geolocation' })
         .then(permission => {
