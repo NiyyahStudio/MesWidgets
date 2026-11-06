@@ -1,0 +1,457 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Niyyah Studio | Prayer Times</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Chewy&family=Poppins:wght@400;500;600;700&family=Lavishly+Yours&display=swap" rel="stylesheet">
+
+<style>
+:root {
+    --wine: #B80C54;
+    --pink: #FD71B1;
+    --soft-pink: #FDA9D2;
+    --cream: #FEDDEE;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: transparent;
+    font-family: 'Poppins', sans-serif;
+    color: var(--wine);
+    padding: 15px;
+}
+
+.widget {
+    max-width: 460px;
+    margin: auto;
+    background: var(--cream);
+    border-radius: 28px;
+    padding: 24px;
+    overflow: hidden;
+}
+
+/* HEADER */
+
+.header {
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.brand {
+    font-family: 'Chewy', cursive;
+    font-size: 30px;
+    color: var(--wine);
+}
+
+.subtitle {
+    font-family: 'Lavishly Yours', cursive;
+    font-size: 30px;
+    color: var(--pink);
+    margin-top: -5px;
+}
+
+.date {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    margin-top: 8px;
+}
+
+/* LOCATION */
+
+.location {
+    background: white;
+    padding: 12px;
+    border-radius: 15px;
+    text-align: center;
+    font-size: 12px;
+    margin-bottom: 18px;
+}
+
+.location button {
+    background: var(--wine);
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 18px;
+    margin-top: 10px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 11px;
+    cursor: pointer;
+}
+
+/* NEXT PRAYER */
+
+.next-prayer {
+    background: var(--wine);
+    color: white;
+    border-radius: 20px;
+    padding: 20px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.next-label {
+    font-size: 10px;
+    letter-spacing: 2px;
+    opacity: .8;
+}
+
+.next-name {
+    font-family: 'Chewy', cursive;
+    font-size: 32px;
+    margin: 8px 0;
+}
+
+.countdown {
+    font-size: 28px;
+    font-weight: 600;
+    letter-spacing: 2px;
+}
+
+/* PRAYER LIST */
+
+.prayers {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.prayer {
+    background: var(--soft-pink);
+    border-radius: 16px;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: .2s;
+}
+
+.prayer:last-child {
+    grid-column: span 2;
+}
+
+.prayer.active {
+    background: var(--wine);
+    color: white;
+}
+
+.prayer-name {
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.prayer-time {
+    font-size: 17px;
+    font-weight: 700;
+}
+
+/* FOOTER */
+
+.footer {
+    text-align: center;
+    margin-top: 22px;
+    font-size: 9px;
+    letter-spacing: 2px;
+    opacity: .8;
+}
+
+.refresh {
+    display: block;
+    margin: 16px auto 0;
+    border: 1px solid var(--wine);
+    background: transparent;
+    color: var(--wine);
+    padding: 9px 18px;
+    border-radius: 20px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 11px;
+    cursor: pointer;
+}
+
+.status {
+    font-size: 11px;
+    text-align: center;
+    margin-top: 12px;
+}
+
+@media(max-width: 350px) {
+    .widget { padding: 15px; }
+    .prayer { padding: 11px; }
+    .prayer-time { font-size: 15px; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="widget">
+
+    <header class="header">
+        <div class="brand">Niyyah Studio</div>
+        <div class="subtitle">A moment for your deen</div>
+        <div class="date" id="date">LOADING...</div>
+    </header>
+
+    <section class="location">
+        <div id="locationText">Your location is not set</div>
+        <button onclick="getLocation()">USE MY LOCATION</button>
+    </section>
+
+    <section class="next-prayer">
+        <div class="next-label">NEXT PRAYER</div>
+        <div class="next-name" id="nextName">--</div>
+        <div class="countdown" id="countdown">--:--:--</div>
+        <div class="next-label" id="nextTime">Waiting for location</div>
+    </section>
+
+    <section class="prayers" id="prayers">
+
+        <div class="prayer" data-name="Fajr">
+            <span class="prayer-name">FAJR</span>
+            <span class="prayer-time">--:--</span>
+        </div>
+
+        <div class="prayer" data-name="Dhuhr">
+            <span class="prayer-name">DHUHR</span>
+            <span class="prayer-time">--:--</span>
+        </div>
+
+        <div class="prayer" data-name="Asr">
+            <span class="prayer-name">ASR</span>
+            <span class="prayer-time">--:--</span>
+        </div>
+
+        <div class="prayer" data-name="Maghrib">
+            <span class="prayer-name">MAGHRIB</span>
+            <span class="prayer-time">--:--</span>
+        </div>
+
+        <div class="prayer" data-name="Isha">
+            <span class="prayer-name">ISHA</span>
+            <span class="prayer-time">--:--</span>
+        </div>
+
+    </section>
+
+    <div class="status" id="status">
+        Allow location access to begin.
+    </div>
+
+    <button class="refresh" onclick="getLocation()">
+        ↻ Refresh
+    </button>
+
+    <footer class="footer">
+        NIYYAH STUDIO · MAKE TIME FOR WHAT MATTERS
+    </footer>
+
+</div>
+
+<script>
+let coordinates = null;
+let prayerData = null;
+let tomorrowFajr = null;
+
+const prayerNames = [
+    "Fajr", "Dhuhr", "Asr", "Maghrib", "Isha"
+];
+
+function formatDate(date) {
+    const d = String(date.getDate()).padStart(2, '0');
+    const m = String(date.getMonth() + 1).padStart(2, '0');
+    const y = date.getFullYear();
+    return `${d}-${m}-${y}`;
+}
+
+function updateDate() {
+    document.getElementById('date').textContent =
+        new Date().toLocaleDateString('en-GB', {
+            weekday: 'long',
+            day: 'numeric',
+            month: 'long',
+            year: 'numeric'
+        }).toUpperCase();
+}
+
+function getLocation() {
+    const status = document.getElementById('status');
+
+    if (!navigator.geolocation) {
+        status.textContent = "Geolocation is not supported.";
+        return;
+    }
+
+    status.textContent = "Finding your location...";
+
+    navigator.geolocation.getCurrentPosition(
+        async position => {
+            coordinates = {
+                latitude: position.coords.latitude,
+                longitude: position.coords.longitude
+            };
+
+            document.getElementById('locationText').textContent =
+                "Prayer times for your current location";
+
+            await loadPrayerTimes();
+        },
+        error => {
+            status.textContent =
+                "Location unavailable. Please allow location access.";
+        },
+        {
+            enableHighAccuracy: true,
+            timeout: 15000
+        }
+    );
+}
+
+async function fetchTimings(date) {
+    const { latitude, longitude } = coordinates;
+
+    const url =
+        `https://api.aladhan.com/v1/timings/${formatDate(date)}` +
+        `?latitude=${latitude}&longitude=${longitude}&method=12&school=0`;
+
+    const response = await fetch(url);
+
+    if (!response.ok) {
+        throw new Error("Unable to retrieve prayer times.");
+    }
+
+    const result = await response.json();
+
+    if (result.code !== 200) {
+        throw new Error("Prayer calculation failed.");
+    }
+
+    return result.data.timings;
+}
+
+function cleanTime(time) {
+    return time.match(/\d{1,2}:\d{2}/)[0];
+}
+
+async function loadPrayerTimes() {
+    const status = document.getElementById('status');
+
+    try {
+        status.textContent = "Calculating prayer times...";
+
+        prayerData = await fetchTimings(new Date());
+
+        const tomorrow = new Date();
+        tomorrow.setDate(tomorrow.getDate() + 1);
+
+        const tomorrowData = await fetchTimings(tomorrow);
+        tomorrowFajr = tomorrowData.Fajr;
+
+        prayerNames.forEach(name => {
+            const card = document.querySelector(
+                `.prayer[data-name="${name}"]`
+            );
+
+            card.querySelector('.prayer-time').textContent =
+                cleanTime(prayerData[name]);
+
+            card.classList.remove('active');
+        });
+
+        status.textContent = "Prayer times successfully updated ♡";
+
+        updateClock();
+
+    } catch (error) {
+        status.textContent = "Unable to load prayer times. Try again.";
+        console.error(error);
+    }
+}
+
+function updateClock() {
+    if (!prayerData) return;
+
+    const now = new Date();
+
+    let next = null;
+    let nextDate = new Date(now);
+
+    for (const name of prayerNames) {
+        const [hour, minute] = cleanTime(prayerData[name])
+            .split(':').map(Number);
+
+        const prayerDate = new Date(now);
+        prayerDate.setHours(hour, minute, 0, 0);
+
+        if (prayerDate > now) {
+            next = name;
+            nextDate = prayerDate;
+            break;
+        }
+    }
+
+    if (!next) {
+        next = "Fajr";
+        const [hour, minute] = cleanTime(tomorrowFajr)
+            .split(':').map(Number);
+
+        nextDate.setDate(nextDate.getDate() + 1);
+        nextDate.setHours(hour, minute, 0, 0);
+    }
+
+    document.querySelectorAll('.prayer').forEach(card => {
+        card.classList.toggle(
+            'active',
+            card.dataset.name === next &&
+            nextDate.toDateString() === now.toDateString()
+        );
+    });
+
+    document.getElementById('nextName').textContent = next;
+    document.getElementById('nextTime').textContent =
+        cleanTime(nextDate.toTimeString().slice(0, 5)) +
+        (nextDate.toDateString() !== now.toDateString()
+            ? " · TOMORROW" : "");
+
+    const seconds = Math.max(
+        0,
+        Math.floor((nextDate - now) / 1000)
+    );
+
+    const h = String(Math.floor(seconds / 3600)).padStart(2, '0');
+    const m = String(Math.floor((seconds % 3600) / 60)).padStart(2, '0');
+    const s = String(seconds % 60).padStart(2, '0');
+
+    document.getElementById('countdown').textContent =
+        `${h}:${m}:${s}`;
+}
+
+updateDate();
+setInterval(updateClock, 1000);
+setInterval(updateDate, 60000);
+
+// Load automatically if permission was already granted
+if (navigator.permissions) {
+    navigator.permissions.query({name: 'geolocation'})
+        .then(permission => {
+            if (permission.state === 'granted') {
+                getLocation();
+            }
+        })
+        .catch(() => {});
+}
+</script>
+
+</body>
+</html>
