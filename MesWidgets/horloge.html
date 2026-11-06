@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -30,19 +31,19 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 18px;
+    gap: 22px;
 }
 
 .clock {
     display: flex;
-    gap: 10px;
+    gap: 12px;
 }
 
 .card {
-    width: 210px;
-    height: 315px;
+    width: 264px;
+    height: 393px;
     background: #FEDDEE;
-    border-radius: 30px;
+    border-radius: 36px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -50,29 +51,29 @@ body {
 }
 
 .number {
-    font-size: 150px;
-    font-weight: 700;
-    color: #B80C54;
+    font-size: 180px;
+    font-weight: 600;
+    color: #FD71B1;
     line-height: 1;
     letter-spacing: -8px;
 }
 
 .day {
     position: absolute;
-    bottom: 16px;
-    right: 18px;
-    font-size: 17px;
-    font-weight: 600;
-    color: #B80C54;
+    bottom: 20px;
+    right: 22px;
+    font-size: 22px;
+    font-weight: 500;
+    color: #FD71B1;
     letter-spacing: 1px;
 }
 
 .brand {
     display: flex;
     align-items: center;
-    gap: 12px;
-    color: #B80C54;
-    font-size: 11px;
+    gap: 14px;
+    color: #FD71B1;
+    font-size: 13px;
     font-weight: 500;
     letter-spacing: 3px;
     text-transform: uppercase;
@@ -81,25 +82,21 @@ body {
 .brand::before,
 .brand::after {
     content: "";
-    width: 30px;
+    width: 35px;
     height: 1px;
-    background: #B80C54;
+    background: #FD71B1;
 }
 
+/* Responsive */
 @media (max-width: 600px) {
-    .clock {
-        gap: 8px;
-    }
-
     .card {
         width: 43vw;
         height: 60vw;
-        border-radius: 24px;
+        border-radius: 25px;
     }
 
     .number {
         font-size: 25vw;
-        letter-spacing: -1.2vw;
     }
 
     .day {
@@ -112,39 +109,53 @@ body {
 </head>
 
 <body>
+
 <div class="container">
+
     <div class="clock">
+
         <div class="card">
             <span class="number" id="hours">00</span>
         </div>
 
         <div class="card">
             <span class="number" id="minutes">00</span>
-            <span class="day" id="day">LUNDI</span>
+            <span class="day" id="day">MONDAY</span>
         </div>
+
     </div>
 
-    <div class="brand">Niyyah Studio</div>
+    <div class="brand">
+        Niyyah Studio
+    </div>
+
 </div>
 
 <script>
 function updateClock() {
     const now = new Date();
 
-    document.getElementById('hours').textContent =
-        String(now.getHours()).padStart(2, '0');
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
 
-    document.getElementById('minutes').textContent =
-        String(now.getMinutes()).padStart(2, '0');
+    const days = [
+        'SUNDAY',
+        'MONDAY',
+        'TUESDAY',
+        'WEDNESDAY',
+        'THURSDAY',
+        'FRIDAY',
+        'SATURDAY'
+    ];
 
-    document.getElementById('day').textContent =
-        new Intl.DateTimeFormat('fr-FR', { weekday: 'long' })
-            .format(now)
-            .toUpperCase();
+    document.getElementById('hours').textContent = hours;
+    document.getElementById('minutes').textContent = minutes;
+    document.getElementById('day').textContent = days[now.getDay()];
 }
 
 updateClock();
 setInterval(updateClock, 1000);
 </script>
+
 </body>
 </html>
